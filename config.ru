@@ -3,6 +3,8 @@
 # This file is used by Rack-based servers to start the application.
 require ::File.expand_path('../config/environment', __FILE__)
 require 'rack/cors'
+# Load CORS::Validations module
+require_relative 'lib/cors/validations'
 
 map Rails.application.config.relative_url_root do
   use Rack::Cors do
