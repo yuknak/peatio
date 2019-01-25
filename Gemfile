@@ -87,3 +87,6 @@ end
 Dir.glob File.expand_path('../Gemfile.plugin', __FILE__) do |file|
   eval_gemfile file
 end
+
+# Added later
+gem 'dotenv-rails'
