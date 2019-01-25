@@ -1,5 +1,9 @@
 defaults: &defaults
-  TIMEZONE: 'Paris'
+  TIMEZONE: 'Asia/Tokyo'
+
+  DATABASE_HOST: localhost
+  DATABASE_USER: ror
+  DATABASE_PASS: ror
 
   # Configure Redis URL, for a TCP connection:
   # `redis://:[password]@[hostname]:[port]/[db]`
@@ -7,10 +11,10 @@ defaults: &defaults
   REDIS_URL:      redis://localhost:6379
 
   # Comma-separated list of administrators.
-  ADMIN: 'admin@peatio.tech'
+  ADMIN: admin@barong.io,philliparuais@gmail.com
 
   # Application URL configuration variables.
-  URL_HOST:                peatio.tech
+  URL_HOST:                api.wb.local
   URL_SCHEME:              http
   FORCE_SECURE_CONNECTION: 'false' # Set to "true" to disable access via unsecured HTTP, send HSTS headers and use secure cookies.
 
@@ -18,17 +22,17 @@ defaults: &defaults
   SESSION_LIFETIME: '3600'
 
   # Configuration variables for logger.
-  LOG_LEVEL: ~ # Default level for production is warn, otherwise – debug.
+  LOG_LEVEL: debug # Default level for production is warn, otherwise – debug.
 
   # Enabled OAuth2 provider.
   # Don't forget to check out configuration at config/initializers/omniauth.rb.
-  OAUTH2_SIGN_IN_PROVIDER: ~
+  OAUTH2_SIGN_IN_PROVIDER: barong
 
   # Configuration variables for sign in with Google.
   # See https://github.com/zquestz/omniauth-google-oauth2
-  GOOGLE_CLIENT_ID:
-  GOOGLE_CLIENT_SECRET:
-  GOOGLE_OAUTH2_REDIRECT_URL: ~ # Specify URL address to which user will be redirected after successful sign in.
+  #GOOGLE_CLIENT_ID:
+  #GOOGLE_CLIENT_SECRET:
+  #GOOGLE_OAUTH2_REDIRECT_URL: ~ # Specify URL address to which user will be redirected after successful sign in.
 
   # Configuration variables for sign in with Auth0.
   # See https://github.com/auth0/omniauth-auth0
@@ -42,10 +46,11 @@ defaults: &defaults
   #
   # Barong uses Doorkeeper under the hood so you can refer to it's docs any time.
   # See more information at https://github.com/doorkeeper-gem/doorkeeper/wiki/Testing-your-provider-with-OAuth2-gem
-  BARONG_CLIENT_ID:           ~
-  BARONG_CLIENT_SECRET:       ~
-  BARONG_DOMAIN:              ~
-  BARONG_OAUTH2_REDIRECT_URL: ~ # Specify URL address to which user will be redirected after successful sign in.
+  #BARONG_OAUTH2_REDIRECT_URL: ~ # Specify URL address to which user will be redirected after successful sign in.
+  BARONG_OAUTH2_REDIRECT_URL: http://api.wb.local # Specify URL address to which user will be redirected after successful sign in.
+  BARONG_DOMAIN: http://auth.wb.local
+  BARONG_CLIENT_ID: a68be319fca51caca60eed5711226e568bd1c1d13ff452b945515f1a6ffbaca4
+  BARONG_CLIENT_SECRET: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
 
   # Configuration variables for API CORS.
   #
@@ -114,10 +119,10 @@ defaults: &defaults
   #
   #   curl -H "Authorization: Bearer TOKEN" http://localhost:3000/api/v2/members/me
   #
-  JWT_PUBLIC_KEY:        ~
+  JWT_PUBLIC_KEY: LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFzVUR5MTdzZHFCS1VBM2RGYXJzNApZeDNSYy9hdXRwSXlFbGRSV3NPcVpMWlQvemVGcC9VZWc1OEt2OEgxcHdUQ3RMZ3hZZkdDaC9NSC84ckVtcDVUCnkrL1VFbERFeTBwM3JKRk5vRTd3UHdrWEFnODdtd3NiYWNycFZSeGdJUmpvNU1NTHZ1cnhNc3lHa2wyMnlEenYKTnJ6YUJDY1lkaWxuTGcvSmlxbS9YSVpRd2wyVWd5K3duL2VsQjBLNkFiZWhpUTMxZ3RiT0VIQW0zUWdCc09aVwo2a1ZNMVI4VzJKZkt5dFRvY29DYVB3UEJRUnRXYXVXWnlpQWYxcDc5TTV5ODJTNzlEUVJGOW9tVDc5SkdMZnpCCjZWbmtDZkVydEZvaFpQL3EyYTFtclk3bTUxTlpoUVcybFY3UXJzWjZSanBrNHFzVEJ6aDEzZkF4b2Z4T3hZcG0KWXdJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg==
   JWT_ALGORITHM:         RS256  # JWT signing algorithm (mandatory).
   JWT_ISSUER:            ~      # JWT issuer name (optional).
-  JWT_AUDIENCE:          peatio # Could be comma-separated value (optional).
+  JWT_AUDIENCE:          peatio,barong # Could be comma-separated value (optional).
   JWT_DEFAULT_LEEWAY:    ~      # Seconds (optional).
   JWT_ISSUED_AT_LEEWAY:  '180'    # Seconds (optional).
   JWT_EXPIRATION_LEEWAY: ~      # Seconds (optional).
@@ -151,7 +156,7 @@ defaults: &defaults
   #
   #   ruby -e "require 'openssl'; require 'base64'; OpenSSL::PKey::RSA.generate(2048).tap { |p| puts '', 'PRIVATE RSA KEY (URL-safe Base64 encoded, PEM):', '', Base64.urlsafe_encode64(p.to_pem), '', 'PUBLIC RSA KEY (URL-safe Base64 encoded, PEM):', '', Base64.urlsafe_encode64(p.public_key.to_pem) }"
   #
-  EVENT_API_JWT_PRIVATE_KEY: ~ # Private key. Must be URL-safe Base64 encoded in PEM format.
+  EVENT_API_JWT_PRIVATE_KEY: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb1FJQkFBS0NBUUVBc1VEeTE3c2RxQktVQTNkRmFyczRZeDNSYy9hdXRwSXlFbGRSV3NPcVpMWlQvemVGCnAvVWVnNThLdjhIMXB3VEN0TGd4WWZHQ2gvTUgvOHJFbXA1VHkrL1VFbERFeTBwM3JKRk5vRTd3UHdrWEFnODcKbXdzYmFjcnBWUnhnSVJqbzVNTUx2dXJ4TXN5R2tsMjJ5RHp2TnJ6YUJDY1lkaWxuTGcvSmlxbS9YSVpRd2wyVQpneSt3bi9lbEIwSzZBYmVoaVEzMWd0Yk9FSEFtM1FnQnNPWlc2a1ZNMVI4VzJKZkt5dFRvY29DYVB3UEJRUnRXCmF1V1p5aUFmMXA3OU01eTgyUzc5RFFSRjlvbVQ3OUpHTGZ6QjZWbmtDZkVydEZvaFpQL3EyYTFtclk3bTUxTloKaFFXMmxWN1Fyc1o2UmpwazRxc1RCemgxM2ZBeG9meE94WXBtWXdJREFRQUJBb0lCQUZFZmNvVDlaRU5KeldnUQpyRHArMlAyejVlcDIyZHRBNloydlROS0hmbko5WjlBRWJ5MUJaK2ZCWUVBRzJ4REhndjBHMThNRnIwSGRIcW9ZCitRWHl0Rk0vdmdWcjVjVk1uWnpqRzIzazh0dEdvN3NUa2FvUjJVZi96KzVlQURqbGw2RXJDek1qZjZSS0tzVE8KRXh0dGwrV3JaUFJGbUZKci9JYitQclV4bngwT3NCdU51QmZwbnFvSEJrV3lkQStNSjkwNjkyS3BwZEg4ZHZZVwpRYlJaQk1BMFA3VUcvQkVWSXJaYW1Ha1FJc0JpdWpiRExBdWllVm1uaW5meEJRUUVXZzhGL3hFcHdWMGU2aElWCjJSVmc3MHMxUkZob2tDZU84cUV6RWQ3OFRBRHVRVVAxNWJKT3lCVjZjTHVndjhFaFBYTS9wa2p4ZDFNNHF3K1EKbXFrZjN6RUNnWUVBNlNWTnRRTE1CYXhONE1INWpBVUhHV0toZmtiTE8rN2pncDlMQzlWOGR4QURjMXRwVjJvdQpBSU9YR1hqWmo5cXR6czRFK3QwSDB2T281S2xCYXNheTM2Q0FrcFB4WXloL2JVU2NIV1Z5WEo5emMzRGlobVE2CkR1UHUvS0xYeGx2aFY2T0x2YTZJcWdUM1h1Vlo2aUdSUXlGai9lU3ZNbE0ySEt2eEN6cmJ1dFVDZ1lFQXdxRU8KMFZZa3NQc0Y1Qzkvak1iMzJ3d3liQmRJMU1yM3JoR2VYMkVRN2crL0R5OGY5eTUrR3ZTeVNjZkFncitsNWZFSgpIeFhHRy9LMWlURWdFODdNZkdOZmhHalpwVDRla3VKemR3NW9oZHR2VkNDMGxFYW90M2ZaMGJUcHBCa2ZZWm0zCnVDd2tYZDNkRnZUU0ZZZWtQcTlDWkd1ZGhoTkE0Y1FWTGZ3S1NGY0NnWUVBeGt6aVFUbDF5c1Y1SDlnY3BzbUgKOWtGNzFtbmtacitUWndDUjFpam95bVFtYXpHdThaandNNk81R3dNOUdTd0lkVU9wM0sydS8vQWJFUkljLy9LdApKYVBnZDh1NW5udE5sdVNxWEI1ekhQREtROEFhQy9DbnFRNlpzT3ZZMTNCQ3hFWG9qNWNweW1LYS9HM2JBbGMyCnRJQnNDZ0UrT25Hb0xzN1lJSk1aWFZrQ2dZQVMySm1ndDZDeDZueTFqY3ZpQzlvd1Fjd1lIMkVVQ2R0VjVhcmEKUFlId0sySXF6RHRpS2dSWUE5M0h1eW51L3pQSFFrSEoyc2ZtS09oZk1ueVNybkdxa2N6TCs0TW50dzRxMXZhcgpUcC9jWmxVdlprTldJRWx5Q283eStYdXVRaWlCd09yRFVMTHN5L0QrcWhJMXQzNjEreTZJbnNzUUVva3owMUxoCnN3Z2ozUUovV2dERmVvS1kwVlZXT2hkOHBDcm1LM3pFaWZYRGNEUDk1M3BvMFR1cjRKU2wzZGExYkZSVVk4eXcKTk5XR2s5TVJJa0pPYUVZMGpDNXgyc2I2MWlGR2dhOXNkM1ZReC9hUk5TczF4R1BWVFh3a3YxOU1iTi9hRGVOWgp1Q0VzZThTT3YrR2xCWTV5WW5VR3lXWElDcGF6eVZBMlpUWW1JajR4U3ZvbFVCblRhZz09Ci0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
   EVENT_API_JWT_ALGORITHM:   RS256
 
   # RabbitMQ configuration.
@@ -170,23 +175,6 @@ defaults: &defaults
 
 development:
   <<: *defaults
-
-  # Development OAuth2 provider.
-  OAUTH2_SIGN_IN_PROVIDER:    google
-
-  # Development configuration variables for sign in with Google.
-  GOOGLE_CLIENT_ID:           1044454023387-emhp5vmfnp5cf1n9juk09g8gcckrova7.apps.googleusercontent.com
-  GOOGLE_CLIENT_SECRET:       tAFZvO200-0z3MpCyOpkPH0G
-
-  # Development configuration variables for sign in with Auth0.
-  AUTH0_OAUTH2_DOMAIN:        peatio-playground.auth0.com
-  AUTH0_OAUTH2_CLIENT_ID:     lGKS9ADpknQr415RNZrrQTf3Jh8k2Fvc
-  AUTH0_OAUTH2_CLIENT_SECRET: LxUPnrrrpRHSB-vVgWU3TwmakQ8acY5mYVTaVgkREQL3i9avjpOnWTXSSEsrbLzK
-
-  # Development configuration variables for Event API JWT.
-  EVENT_API_JWT_PRIVATE_KEY:  LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBb3VLVHh2SFVJVDJENmdXaWJRcS9kbW9BUUwyeWJ6SGFiUXRlc1AyL2o1VjkvUExaCmhHNWtLVkpPWjcxVVdMQ3BjZTQxeHZzQ0lKd0Q5MnVDNW5Lak5wblRDTWpwTUJNMGg0aFF4a2VOeHdNeU41N1gKM1QzbWFCVmZzUTNCblErSm84L0tzdUxhODlvY0dDeDgvYlUyOGNld2FxRk8ydUVMWWJiaUZadGFCenFJd0ZCdQpTM3hGQmt6NE16MGgvWEIxTjl5ZDg5d25OMm1oWVBsU0xrTGVUdFoyeWswK2krZHhZd2V4MEozOXJDS0hnRWRKCko1NTZHNmdtZWpJZ3dtcHNVeHJpdkVJRU5jR09POHdmQVBUVy92SFZmc2ROTExHejRtZE9CWmxsa2orcFFQODYKTnFSUjRKSnFDdEg3dHYyaXVBSGI4NnB5anVlZkVGU3ljMmxZRXdJREFRQUJBb0lCQUJrUlViamVZczB5MEdobApzWmVpZmREVmczQnpRVkRIbFZ3TzBlWGZSMm5ya2RZcDhidmwyVmhhcUdKaXl1WlRXZUNFenBYdTcyYmhXK0xxCkV0MHdhMW50MW9LVm1QMmpGd1I4d0NHanhYZ0pUK01yZVFFOWs0WVZOQUxsb1JSdzNiZnVOTDNQRis5TGMrTnMKaFZmdVdhUmdIUkJyL3R6RW9hSEtLWVUxd1djM0poSitNRklNVkZBT0RvaGp6bXNlV2lzTDNnbzVrUC9KYUpVZwprNm13Wnd0QzRvQ3pPQ3FoRGF0WVI3cktJbXMyS1lCNVBwaTRDTThkRzJGTzBwWGxXUU9XT0t2N01TUjlVeEtzCmd4YWFRRlhjajBQM2lSRFVQMDRkSWtqblNtemZmR0F2L3lBTHovZjk0V1lIK3gvd01DWms4ejJ4bnRJclllM3UKN0NOd045RUNnWUVBMEplcThCaXlKczF6YlBpcTlWWnR5L3R0M1dhaXJDbUl4cXRwU2syVU9UNmh2TldiMTUxVwpBMGRWYWEvSVBhdDV4ZkNWdGhkNlB3UGpJbWVPVXQ4Mlhib2JYeE8zREJUcmVzTlRNWUhiMGVUK09sSG04SU5uCnVwOGFxZWpWejc1ME5VYUxGWWpxWk1wVVR1Z2FVREIzNWZ1bXg0SXliNm5LRGMvSStrN25qUlVDZ1lFQXgrZVAKcE4vR1dqYjJUOU1CUm1xdkVtSGxKOXBZSEZpWGZlWnJHdzg3Q2E5WjVDYVp1VzBrSVAwSlhWSDZOOThqL2RvbApDTHZPdE5oZVFoaGUrTU91VXJMT0ttaytpckM5SEk2cW9aT3Nkc0lCc0pXSHdPanB1UW00OWNvdXc0K2ZKOWRxCjN2cTE2bG5EQlNoRU5HTEFhdVBzWDhLRUlYVzhRRnBDM3ppbXFvY0NnWUI2bTh2VVdRL09reEQzeXFyaWpxejMKSzVFR2hKKzF4cXdvNnZSMndtY1B4dXJXemxCT1NxTVdSa1hFVzVpOTl4OGE1REY3MlF6NElWYlBFRU91SHBvYwpPWnFCSmx0LzlJUDlvdll4c1h6K1FUWFdIZkk3Q1dKZFpjd01kMW5HUk5LVnhpTld3eVhUbk1JMXAyUmdJajAzCnA5WCtpMThPRjZVMnZSNExVM256aVFLQmdBVVZzOGFxMW4zRzloN3pyQTJoZXhDSm91MlBsVHdyV0xjZ0hFdFUKNk5pSE9FOGdXRHFxTndnTHg2Z3pCSjFWTkxJcFVWWFdpUng2Z0hOSDhXcDhkN3VzeHFlM2c1cTlnaUh1MHhKSApFbFQyL0ZvRWc2NTVmakJ4dWQydXBkL2RrRnZRRSt6V0RiaUhUZm1jbTVlRmg0VndoTHV1MC9PUjdoYm85TmgrCnRXYVRBb0dCQUwxVjFUTWZZRFhwYjFwaFBaV2pQL29iV1NqK2VyUXlYdit3TTIxVzRYWFI4YTBkV2hOVXdVeDAKdU9WZ2s1ZlN1OExtNG0zWGNYZ09wV0VJVkZJTzFodDFNN0xxZ0VGNGhFOHl6Y0Vldy9HWXR4VkpCTWEyODVpVQpaVUtkeCt6QWd5VFlnYk50VkVseTVobGRuT2orVmNzanVEL3krWEhXWVl5OVpLa2pNdDhECi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
-  # Event API JWT public key value is.
-  # EVENT_API_JWT_PUBLIC_KEY: LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFvdUtUeHZIVUlUMkQ2Z1dpYlFxLwpkbW9BUUwyeWJ6SGFiUXRlc1AyL2o1VjkvUExaaEc1a0tWSk9aNzFVV0xDcGNlNDF4dnNDSUp3RDkydUM1bktqCk5wblRDTWpwTUJNMGg0aFF4a2VOeHdNeU41N1gzVDNtYUJWZnNRM0JuUStKbzgvS3N1TGE4OW9jR0N4OC9iVTIKOGNld2FxRk8ydUVMWWJiaUZadGFCenFJd0ZCdVMzeEZCa3o0TXowaC9YQjFOOXlkODl3bk4ybWhZUGxTTGtMZQpUdFoyeWswK2krZHhZd2V4MEozOXJDS0hnRWRKSjU1Nkc2Z21laklnd21wc1V4cml2RUlFTmNHT084d2ZBUFRXCi92SFZmc2ROTExHejRtZE9CWmxsa2orcFFQODZOcVJSNEpKcUN0SDd0djJpdUFIYjg2cHlqdWVmRUZTeWMybFkKRXdJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg==
 
 test:
   <<: *defaults
