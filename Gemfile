@@ -90,3 +90,4 @@ end
 
 # Added later
 gem 'dotenv-rails'
+gem 'i18n'
