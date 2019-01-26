@@ -8,7 +8,7 @@
   status:           active
   gateway:          geth
   settings:
-    uri:            http://geth:8545
+    uri:            http://localhost:8545
     secret:         'changeme'
 
 - name:             Ethereum Hot Wallet
@@ -21,7 +21,7 @@
   status:           active
   gateway:          geth
   settings:
-    uri:            http://geth:8545
+    uri:            http://localhost:8545
     secret:         'test'
 
 - name:             Ethereum Wallet for paying ERC20 fees
@@ -34,7 +34,7 @@
   status:           active
   gateway:          geth
   settings:
-    uri:            http://geth:8545
+    uri:            http://localhost:8545
     secret:         'test'
 
 
@@ -48,7 +48,7 @@
   status:           active
   gateway:          geth
   settings:
-    uri:            http://geth:8545
+    uri:            http://localhost:8545
     secret:         'changeme'
 
 - name:             Trust Hot Wallet
@@ -61,7 +61,7 @@
   status:           active
   gateway:          geth
   settings:
-    uri:            http://geth:8545
+    uri:            http://localhost:8545
     secret:         'test'
 
 - name:             Bitcoin Deposit Wallet
@@ -74,7 +74,7 @@
   status:           active
   gateway:          bitcoind
   settings:
-    uri:            http://admin:changeme@bitcoind:18332
+    uri:            http://admin:changeme@localhost:18332
 
 - name:             Bitcoin Hot Wallet
   blockchain_key:   btc-testnet
@@ -86,4 +86,4 @@
   status:           active
   gateway:          bitcoind
   settings:
-    uri:            http://admin:changeme@bitcoind:18332
+    uri:            http://admin:changeme@localhost:18332
