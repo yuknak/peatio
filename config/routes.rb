@@ -71,7 +71,8 @@ Peatio::Application.routes.draw do
 
   get 'trading/:market_id', to: BlackHoleRouter.new, as: :trading
 
-  draw :admin
+  #draw :admin
+  draw :admin2
 
   get '/swagger', to: 'swagger#index'
 

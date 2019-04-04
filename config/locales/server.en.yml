@@ -391,6 +391,10 @@ en:
           fee: Fee
           sum: Amount
           account_balance: Account Balance
+  admin2:
+    members:
+      index:
+        search: Search
   admin:
     deposits:
       fiats:
