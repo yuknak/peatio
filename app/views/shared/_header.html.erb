@@ -1,21 +1,40 @@
-<header class="mb-4">
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="text-center navbar-brand" href="<%= root_path %>">
-        <img class="nav-img" src="<%= ENV['LOGO_URL'] || image_path('logo.png') %>">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse" id="top-navbar">
-        <ul id="menu" class="navbar-nav mr-auto">
-          <%= top_nav_link(t('header.market'), trading_path(current_market.id), 'exchange-alt', target: '_blank') if current_user %>
-          <%= top_nav_link(t('header.funds'), funds_path, 'money-bill-wave', controllers: ['funds']) if current_user %>
-          <%= top_nav_link(t('header.history'), order_history_path, 'book', controllers: ['history']) if current_user %>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <%= render partial: 'shared/header_profile_setting' if current_user %>
-          <%= render partial: 'shared/header_lang_sel' %>
-        </ul>
+
+    <!-- Header -->
+    <header id="js-header" class="u-header u-header--sticky-top u-header--toggle-section u-header--change-appearance" data-header-fix-moment="300">
+
+      <div class="u-header__section u-header__section--dark g-bg-black g-transition-0_3 g-py-10" data-header-fix-moment-exclude="g-py-10" data-header-fix-moment-classes="g-py-0">
+        <nav class="js-mega-menu navbar navbar-expand-lg hs-menu-initialized hs-menu-horizontal">
+          <div class="container">
+
+            <!-- Responsive Toggle Button -->
+            <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-minus-3 g-right-0" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+              <span class="hamburger hamburger--slider">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+              </span>
+              </span>
+            </button>
+            <!-- End Responsive Toggle Button -->
+
+            <!-- Logo -->
+            <a href="/settings" class="navbar-brand d-flex"><big><strong>PLUSQO.COM</strong></big></a>
+            <!-- End Logo -->
+
+            <!-- Navigation -->
+            <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg g-mr-40--lg" id="navBar">
+              <ul class="navbar-nav g-pos-rel g-font-weight-600 ml-auto">
+
+              <%= top_nav_link(t('header.market'), trading_path(current_market.id), 'exchange-alt', target: '_blank') if current_user %>
+              <%= top_nav_link(t('header.funds'), funds_path, 'money-bill-wave', controllers: ['funds']) if current_user %>
+              <%= top_nav_link(t('header.history'), order_history_path, 'bookDUMMY', controllers: ['history']) if current_user %>
+              <%= render partial: 'shared/header_profile_setting' if current_user %>
+              </ul> 
+            </div>
+            <!-- End Navigation -->
+
+
+          </div>
+        </nav>
       </div>
-    </div>
-  </nav>
-</header>
+    </header>
+    <!-- End Header -->
