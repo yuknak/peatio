@@ -131,8 +131,14 @@
                  <%= link_to 'Members', admin2_members_path, :class => 'nav-link g-py-7 g-px-0' %>
                  </li>
                  <% end %>
+                 <li class="dropdown-item ">
+                 <%= link_to 'Market maker', admin2_marketmaker_path, :class => 'nav-link g-py-7 g-px-0' %>
+                 </li>
                  </ul>
                 </li>
+
+
+
                 <!-- End System -->
 
                 <!-- Account -->
@@ -164,9 +170,9 @@
     
     <section class="g-pos-rel g-pt-100">
     <div class="container">
-    <div class="row no-gutters">    
+ 
     <%= yield %>
-    </div>
+
     </div>
     </section>
 

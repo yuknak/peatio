@@ -1,0 +1,25 @@
+
+<div class="row">
+  <div class="col-12">
+    <h3>Marketmaker(PSQ/USD)</h3>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-12">
+<%= form_tag("/admin2/marketmaker", method: "get", enforce_utf8: false) do %>
+  <%= radio_button_tag(:side, "bid") %>
+  <%= label_tag(:side_bid, "bid") %>
+  <%= radio_button_tag(:side, "ask") %>
+  <%= label_tag(:side_ask, "ask") %>
+  <%= label_tag(:p, "Price:") %>
+  <%= text_field_tag(:p) %>
+  <%= label_tag(:v, "Volume:") %>
+  <%= text_field_tag(:v) %>
+  <%= label_tag(:it, "Iteration:") %>
+  <%= text_field_tag(:it) %>
+  <%= submit_tag("exec") %>
+<% end %>
+</div>
+</div>
+
