@@ -3,6 +3,7 @@
 
 namespace :admin2 do
   get '/', to: 'dashboard#index', as: :dashboard
+  get 'marketmaker', to: 'marketmaker#index', as: :marketmaker
 
   resources :markets, except: %i[edit destroy]
   resources :currencies, except: %i[edit destroy]
@@ -10,6 +11,7 @@ namespace :admin2 do
   resources :wallets, except: %i[edit destroy] do
     post :show_client_info, on: :collection
   end
+
 
   resources :members, only: %i[index show] do
     member do
