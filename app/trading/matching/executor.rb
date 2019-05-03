@@ -38,12 +38,22 @@ module Matching
   private
 
     def validate!
-      raise_error(3001, 'Ask price exceeds strike price.') if @ask.ord_type == 'limit' && @ask.price > @price
-      raise_error(3002, 'Bid price is less than strike price.') if @bid.ord_type == 'limit' && @bid.price < @price
-      raise_error(3003, 'Ask state isn\'t equal to «wait».') unless @ask.state == Order::WAIT
-      raise_error(3004, 'Bid state isn\'t equal to «wait».') unless @bid.state == Order::WAIT
-      unless @funds > ZERO && [@ask.volume, @bid.volume].min >= @volume
-        raise_error(3005, 'Not enough funds.')
+      if (@ask.present?) then
+        raise_error(3001, 'Ask price exceeds strike price.') if @ask.ord_type == 'limit' && @ask.price > @price
+      end
+      if (@bid.present?) then
+        raise_error(3002, 'Bid price is less than strike price.') if @bid.ord_type == 'limit' && @bid.price < @price
+      end
+      if (@ask.present?) then
+        raise_error(3003, 'Ask state isn\'t equal to «wait».') unless @ask.state == Order::WAIT
+      end
+      if (@bid.present?) then
+        raise_error(3004, 'Bid state isn\'t equal to «wait».') unless @bid.state == Order::WAIT
+      end
+      if (@ask.present? && @bid.present?) then
+        unless @funds > ZERO && [@ask.volume, @bid.volume].min >= @volume
+          raise_error(3005, 'Not enough funds.')
+        end
       end
     end
 
