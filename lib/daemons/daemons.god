@@ -34,14 +34,14 @@ def daemon(name, options = {})
     # God will always keep process running unless it was manually terminated.
     w.keepalive
 
-    # In production Docker environment logs go to /dev/stdout.
-    if RAILS_ENV == 'production'
-      w.log_cmd = "#{RAILS_ROOT}/bin/logger #{name.shellescape}"
-    #
-    # In non-production environment logs go to files.
-    else
-      w.log = "#{RAILS_ROOT}/log/daemons/#{filesafe_name}.log"
-    end
+#    # In production Docker environment logs go to /dev/stdout.
+#    if RAILS_ENV == 'production'
+#      w.log_cmd = "#{RAILS_ROOT}/bin/logger #{name.shellescape}"
+#    #
+#    # In non-production environment logs go to files.
+#    else
+#      w.log = "#{RAILS_ROOT}/log/daemons/#{filesafe_name}.log"
+#    end
 
     # Allow customizations.
     yield(w) if block_given?
